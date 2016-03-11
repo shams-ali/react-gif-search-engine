@@ -1,6 +1,19 @@
-var hello = require('./hello');
-var app = document.createElement('div');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import SearchBar from './components/SearchBar';
 
-document.body.appendChild(app);
+class App extends React.Component {
+  handleTermChange(term) {
+    console.log(term);
+  }
 
-app.appendChild(hello());
+  render() {
+    return (
+      <div>
+        <SearchBar onTermChange={this.handleTermChange} />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
