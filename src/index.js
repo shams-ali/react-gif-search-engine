@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import GifList from './components/GifList';
 import SearchBar from './components/SearchBar';
 import request from 'superagent';
+import './styles/app.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +18,6 @@ class App extends React.Component {
     const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&api_key=dc6zaTOxFJmzC`;
 
     request.get(url, (err, res) => {
-      console.log(res.body.data[0]);
       this.setState({ gifs: res.body.data })
     });
   };
