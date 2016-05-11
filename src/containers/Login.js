@@ -23,6 +23,13 @@ class Login extends React.Component {
     this.props.signInUser(values);
   };
 
+  renderAuthenticationError() {
+    if (this.props.authenticationError) {
+      return <div className="alert alert-danger">{ this.props.authenticationError }</div>;
+    }
+    return <div></div>;
+  }
+
   render() {
     const { handleSubmit, fields: { email, password }} = this.props;
 
@@ -30,6 +37,8 @@ class Login extends React.Component {
       <div className="container">
         <div className="col-md-6 col-md-offset-3">
           <h2 className="text-center">Log In</h2>
+
+          { this.renderAuthenticationError() }
 
           <form onSubmit={handleSubmit(this.handleFormSubmit)}>
             <fieldset className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
@@ -51,8 +60,14 @@ class Login extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    authenticationError: state.auth.error
+  }
+}
+
 export default reduxForm({
   form: 'login',
   fields: ['email', 'password'],
   validate
-}, null, Actions)(Login);
+}, mapStateToProps, Actions)(Login);
