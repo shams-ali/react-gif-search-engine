@@ -5,6 +5,7 @@ import Firebase from 'firebase';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const REQUEST_GIFS = 'REQUEST_GIFS';
+export const FETCH_FAVORITED_GIFS = 'FETCH_FAVORITED_GIFS';
 export const SIGN_IN_USER = 'SIGN_IN_USER';
 export const SIGN_OUT_USER = 'SIGN_OUT_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
@@ -12,7 +13,7 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 const API_URL = 'http://api.giphy.com/v1/gifs/search?q=';
 const API_KEY = '&api_key=dc6zaTOxFJmzC';
 
-const ref = new Firebase('https://blazing-torch-1925.firebaseio.com/');
+const ref = new Firebase('<YOUR FIREBASE URL>');
 
 export function requestGifs(term = null) {
   return function(dispatch) {
@@ -21,6 +22,34 @@ export function requestGifs(term = null) {
         type: REQUEST_GIFS,
         payload: response
       });
+    });
+  }
+}
+
+export function favoriteGif({selectedGif}) {
+  const userRef = ref.child(ref.getAuth().uid);
+  const gifId = selectedGif.id;
+
+  return dispatch => userRef.update({
+    [gifId]: selectedGif
+  });
+}
+
+export function unfavoriteGif({selectedGif}) {
+  const userRef = ref.child(ref.getAuth().uid);
+  const gifId = selectedGif.id;
+
+  return dispatch => userRef.child(gifId).remove();
+}
+
+export function fetchFavoritedGifs() {
+  return function(dispatch) {
+    const userRef = ref.child(ref.getAuth().uid);
+    userRef.on('value', snapshot => {
+      dispatch({
+        type: FETCH_FAVORITED_GIFS,
+        payload: snapshot.val()
+      })
     });
   }
 }
