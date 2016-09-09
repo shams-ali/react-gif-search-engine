@@ -3,6 +3,7 @@ import GifItem from './GifItem.jsx';
 
 const GifList = (props) => {
   const gifItems = props.gifs.map((image) =>
+    <div>
     <GifItem
       key={image.id}
       gif={image}
@@ -12,6 +13,7 @@ const GifList = (props) => {
       isAuthenticated={props.isAuthenticated}
       isFavorite={props.isFavorite}
     />
+    </div>
   );
 
   return (
