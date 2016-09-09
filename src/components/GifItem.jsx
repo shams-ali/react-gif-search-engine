@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 class GifItem extends React.Component {
   constructor(props) {
@@ -16,8 +16,8 @@ class GifItem extends React.Component {
     this.props.onFavoriteDeselect(this.props.gif);
   }
 
-  renderFavoriteHeart = () => {
-    if (! this.props.isAuthenticated) {
+  renderFavoriteHeart() {
+    if (!this.props.isAuthenticated) {
       return '';
     }
 
@@ -26,16 +26,29 @@ class GifItem extends React.Component {
     }
 
     return <i className="favorite fa fa-heart-o" onClick={() => this.favoriteGif()} />;
-  };
+  }
 
   render() {
     return (
       <div className="gif-item">
         { this.renderFavoriteHeart() }
-        <img src={this.props.gif.images.downsized.url} onClick={() => this.props.onGifSelect(this.props.gif)} />
+        <img
+          src={this.props.gif.images.downsized.url}
+          onClick={() => this.props.onGifSelect(this.props.gif)}
+          role="presentation"
+        />
       </div>
     );
   }
 }
+
+GifItem.propTypes = {
+  onGifSelect: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.func.isRequired,
+  onFavoriteDeselect: PropTypes.func.isRequired,
+  onFavoriteSelect: PropTypes.func.isRequired,
+  isFavorite: PropTypes.object.isRequired,
+  gif: PropTypes.object.isRequired,
+};
 
 export default GifItem;
