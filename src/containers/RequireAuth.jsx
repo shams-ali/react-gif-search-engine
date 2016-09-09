@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-export default function(WrappedComponent) {
+export default function (WrappedComponent) {
   class Auth extends React.Component {
     componentWillMount() {
       if (!this.props.authenticated) {
@@ -11,7 +11,7 @@ export default function(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />
+      return <WrappedComponent {...this.props} />;
     }
   }
 

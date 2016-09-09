@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
@@ -13,15 +13,19 @@ class Home extends React.Component {
       <div>
         <SearchBar onTermChange={this.props.actions.requestGifs} />
 
-        <GifList gifs={ this.props.gifs }
-                 onGifSelect={ selectedGif => this.props.actions.openModal({selectedGif}) }
-                 onFavoriteSelect={ selectedGif => this.props.actions.favoriteGif({selectedGif}) }
-                 onFavoriteDeselect={ selectedGif => this.props.actions.unfavoriteGif({selectedGif}) }
-                 isAuthenticated={ this.props.authenticated } />
+        <GifList
+          gifs={this.props.gifs}
+          onGifSelect={selectedGif => this.props.actions.openModal({ selectedGif })}
+          onFavoriteSelect={selectedGif => this.props.actions.favoriteGif({ selectedGif })}
+          onFavoriteDeselect={selectedGif => this.props.actions.unfavoriteGif({ selectedGif })}
+          isAuthenticated={this.props.authenticated}
+        />
 
-        <GifModal modalIsOpen={ this.props.modalIsOpen }
-                  selectedGif={ this.props.selectedGif }
-                  onRequestClose={ () => this.props.actions.closeModal() } />
+        <GifModal
+          modalIsOpen={this.props.modalIsOpen}
+          selectedGif={this.props.selectedGif}
+          onRequestClose={() => this.props.actions.closeModal()}
+        />
       </div>
     );
   }
@@ -32,14 +36,21 @@ function mapStateToProps(state) {
     authenticated: state.auth.authenticated,
     gifs: state.gifs.data,
     modalIsOpen: state.modal.modalIsOpen,
-    selectedGif: state.modal.selectedGif
+    selectedGif: state.modal.selectedGif,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Actions, dispatch)
+    actions: bindActionCreators(Actions, dispatch),
   };
 }
+
+Home.propTypes = {
+  modalIsOpen: PropTypes.bool.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  actions: PropTypes.object.isRequired,
+  gifs: PropTypes.array.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

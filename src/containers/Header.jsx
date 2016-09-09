@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import * as Actions from '../actions';
@@ -16,18 +16,17 @@ class Header extends React.Component {
         </li>,
         <li className="nav-item" key={2}>
           <a className="nav-link" href="#" onClick={() => this.handleSignout()}>Sign Out</a>
-        </li>
-      ]
-    } else {
-      return [
-        <li className="nav-item" key={1}>
-          <Link className="nav-link" to="/login">Login</Link>
         </li>,
-        <li className="nav-item" key={2}>
-          <Link className="nav-link" to="/signup">Sign Up</Link>
-        </li>
-      ]
+      ];
     }
+    return [
+      <li className="nav-item" key={1}>
+        <Link className="nav-link" to="/login">Login</Link>
+      </li>,
+      <li className="nav-item" key={2}>
+        <Link className="nav-link" to="/signup">Sign Up</Link>
+      </li>,
+    ];
   }
 
   render() {
@@ -48,8 +47,14 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.auth.authenticated
-  }
+    authenticated: state.auth.authenticated,
+  };
 }
+
+
+Header.propTypes = {
+  signOutUser: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+};
 
 export default connect(mapStateToProps, Actions)(Header);

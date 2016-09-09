@@ -7,7 +7,7 @@ export default function configureStore(initialState) {
   const store = createStore(
     rootReducer,
     initialState,
-    compose (
+    compose(
       applyMiddleware(reduxThunk),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
@@ -17,6 +17,7 @@ export default function configureStore(initialState) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
       const nextRootReducer = require('../reducers').default;
+
       store.replaceReducer(nextRootReducer);
     });
   }

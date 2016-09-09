@@ -27,7 +27,6 @@ const GifModal = (props) => {
 };
 
 GifModal.propTypes = {
-  selectedGif: PropTypes.func.isRequired,
   modalIsOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
 };
