@@ -17,6 +17,11 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "css-loader": "^0.23.1",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^11.0.0",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.1",
+    "eslint-plugin-react": "^6.2.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.15.1"
