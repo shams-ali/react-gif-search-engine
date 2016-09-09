@@ -22,9 +22,6 @@ const config = {
 Firebase.initializeApp(config);
 const ref = Firebase.auth();
 
-// initiate database;
-// const rootRef = Firebase.database().ref();
-
 export function signOutUser() {
   ref.signOut();
   browserHistory.push('/');
@@ -65,19 +62,19 @@ export function requestGifs(term = null) {
 }
 
 export function favoriteGif({ selectedGif }) {
-  const userRef = ref.child(ref.auth.uid);
+  // const userRef = ref.child(ref.auth.uid);
   const gifId = selectedGif.id;
 
-  return () => userRef.update({
+  return () => (Firebase.database().ref().update({
     [gifId]: selectedGif,
-  });
+  }));
 }
 
 export function unfavoriteGif({ selectedGif }) {
-  const userRef = ref.child(ref.auth.uid);
+  // const userRef = ref.child(ref.auth.uid);
   const gifId = selectedGif.id;
 
-  return () => userRef.child(gifId).remove();
+  return () => Firebase.database().ref().child(gifId).remove();
 }
 
 export function openModal(gif) {
