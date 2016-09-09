@@ -4,6 +4,7 @@ import Firebase from 'firebase';
 
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const FETCH_FAVORITED_GIFS = 'FETCH_FAVORITED_GIFS';
 export const REQUEST_GIFS = 'REQUEST_GIFS';
 export const SIGN_IN_USER = 'SIGN_IN_USER';
 export const SIGN_OUT_USER = 'SIGN_OUT_USER';
@@ -62,7 +63,6 @@ export function requestGifs(term = null) {
 }
 
 export function favoriteGif({ selectedGif }) {
-  // const userRef = ref.child(ref.auth.uid);
   const gifId = selectedGif.id;
 
   return () => (Firebase.database().ref().update({
@@ -71,10 +71,20 @@ export function favoriteGif({ selectedGif }) {
 }
 
 export function unfavoriteGif({ selectedGif }) {
-  // const userRef = ref.child(ref.auth.uid);
   const gifId = selectedGif.id;
 
   return () => Firebase.database().ref().child(gifId).remove();
+}
+
+export function fetchFavoritedGifs() {
+  return function (dispatch) {
+    Firebase.database().ref().on('value', snapshot => {
+      dispatch({
+        type: FETCH_FAVORITED_GIFS,
+        payload: snapshot.val(),
+      });
+    });
+  };
 }
 
 export function openModal(gif) {

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import GifItem from './GifItem.jsx';
 
 const GifList = (props) => {
@@ -17,10 +17,6 @@ const GifList = (props) => {
   return (
     <div className="gif-list">{gifItems}</div>
   );
-};
-
-GifList.propTypes = {
-  gifs: PropTypes.array.isRequired,
 };
 
 export default GifList;
