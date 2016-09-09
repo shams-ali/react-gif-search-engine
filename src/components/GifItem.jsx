@@ -44,10 +44,9 @@ class GifItem extends React.Component {
 
 GifItem.propTypes = {
   onGifSelect: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   onFavoriteDeselect: PropTypes.func.isRequired,
   onFavoriteSelect: PropTypes.func.isRequired,
-  isFavorite: PropTypes.object.isRequired,
   gif: PropTypes.object.isRequired,
 };
 
