@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 const PATHS = {
   build: path.join(__dirname, 'build'),
-  src: path.join(__dirname, 'src')
+  src: path.join(__dirname, 'src/index.jsx')
 };
 
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
   devServer: {
     contentBase: PATHS.build,
     historyApiFallback: true,
-    hot: true,      
+    hot: true,
     inline: true,
     progress: true
   },
@@ -38,4 +38,3 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ]
 };
-

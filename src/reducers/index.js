@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import AuthReducer from './auth';
-import GifsReducer from './gifs';
-import ModalReducer from './modal';
+import AuthReducer from './auth.js';
+import GifsReducer from './gifs.js';
+import ModalReducer from './modal.js';
 import { reducer as FormReducer } from 'redux-form';
 
 const rootReducer = combineReducers({

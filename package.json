@@ -2,7 +2,7 @@
   "name": "react-gif-search",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server"

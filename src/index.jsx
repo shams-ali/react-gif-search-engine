@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import Home from './containers/Home';
-import Signup from './containers/Signup';
-import Login from './containers/Login';
-import Favorites from './containers/Favorites';
-import RequireAuth from './containers/RequireAuth';
+import App from './components/App.jsx';
+import Home from './containers/Home.jsx';
+import Signup from './containers/Signup.jsx';
+import Login from './containers/Login.jsx';
+import Favorites from './containers/Favorites.jsx';
+import RequireAuth from './containers/RequireAuth.jsx';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
