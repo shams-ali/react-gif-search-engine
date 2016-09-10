@@ -53,11 +53,38 @@ export function authenticateUser() {
 
 export function requestGifs(term = null) {
   return function (dispatch) {
-    request.get(`${API_URL}${term.replace(/\s/g, '+')}${API_KEY}`).then(response => {
-      dispatch({
-        type: REQUEST_GIFS,
-        payload: response,
-      });
+    dispatch({
+      type: REQUEST_GIFS,
+      payload: {
+        body:
+          { data: [
+            { name: 'Cafe Reconciel', id: 1 },
+            { name: 'Grow Dat', id: 2 },
+            { name: 'Operation Spark',
+              id: 3,
+              mission: 'We teach people how to code so they can get great jobs in the technology industry. If you are interested in learning how to build apps, videogames, and more come talk to us.',
+              benefits: 'Highly relevant career skills in a high-wage industry and access to jobs.',
+              requirements: [
+                'At least 18 years old',
+                'High school reading and math level',
+                'Ready for major commitment',
+              ],
+              upcomingSessions: [
+                'October 3, 2016 Intro to Programming Course',
+                'November 14, 2016 Immersion Course',
+              ],
+              src: 'http://placekitten.com/700/200',
+              logo: 'https://operationspark.org/assets/images/51a31c20.spark-logo.jpg',
+              contact: [
+                'email: max@operationspark.org',
+                'phone: 504.534.8277',
+              ],
+            },
+            { name: 'Total Community Action', id: 4 },
+            { name: 'Youth Empowerment Project', id: 5 },
+          ],
+        },
+      },
     });
   };
 }

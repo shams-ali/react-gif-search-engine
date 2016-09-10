@@ -12,15 +12,47 @@ const GifModal = (props) => {
       onRequestClose={() => props.onRequestClose()}
     >
       <div className="gif-modal">
-        <img src={props.selectedGif.images.original.url} role="presentation" />
-        <p>
-          <strong>Source:</strong>
-          <a href={props.selectedGif.source}>{props.selectedGif.source}</a>
-        </p>
-        <p>
-          <strong>Rating:</strong>{props.selectedGif.rating}
-        </p>
+      <div className="provider-profile page">
+        <section className="content">
+          <section className="main">
+            <h1>{props.selectedGif.name}</h1>
+            <div className="mission">
+              {props.selectedGif.benefits}
+            </div>
+            <hr />
+            { /* Benefits & Requirements */ }
+            <section className="benefits">
+              <h2>Benefits</h2>
+              <p>{props.selectedGif.benefits}</p>
+            </section>
+            <section className="requirements">
+              <h2>Requirements</h2>
+              <ul>
+                {props.selectedGif.requirements.map(req =>
+                  <li key={req}>{req}</li>)}
+              </ul>
+            </section>
+            <section>
+            <h2>Upcoming sessions</h2>
+            <ul>
+              {props.selectedGif.upcomingSessions.map(ses =>
+                <li key={ses}>{ses}</li>)}
+            </ul>
+            </section>
+            <section>
+              <img src={props.selectedGif.src}></img>
+            </section>
+          </section>
+          <section className="sidebar">
+            <img src={props.selectedGif.logo}></img>
+            <div className="contact-block">
+            {props.selectedGif.contact.map(contact =>
+              <li key={contact}>{contact}</li>)}
+            </div>
+          </section>
+        </section>
         <button onClick={() => props.onRequestClose()}>close</button>
+      </div>
       </div>
     </Modal>
   );

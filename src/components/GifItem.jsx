@@ -32,11 +32,13 @@ class GifItem extends React.Component {
     return (
       <div className="gif-item">
         { this.renderFavoriteHeart() }
-        <img
-          src={this.props.gif.images.downsized.url}
+        <p
+          src={this.props.gif.name}
           onClick={() => this.props.onGifSelect(this.props.gif)}
           role="presentation"
-        />
+        >
+          {this.props.gif.name}
+        </p>
       </div>
     );
   }
