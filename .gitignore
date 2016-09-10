@@ -1,4 +1,9 @@
 _Store
 node_modules
+./node_modules
+node_modules/
 *.log
 bundle.js
+./build
+build/
+build
